@@ -1,1 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          # If you're using npm:
+          npm install
+          
+          # If you're using yarn:
+          # yarn install
+
+      - name: Run tests
+        run: |
+          # Replace these commands with your actual test commands
+          echo "Running tests..."
+          # Example: npm test
 
