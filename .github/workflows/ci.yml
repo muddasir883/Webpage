@@ -1,0 +1,23 @@
+name: HTML Validation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install curl
+        run: sudo apt-get update && sudo apt-get install -y curl
+
+      - name: Validate HTML files
+        run: |
+          for file in *.html; do
+            curl -X POST -H "Content-Type: text/html; charset=utf-8" --data-binary "@$file" https://validator.w3.org/nu/?out=json
+          done
